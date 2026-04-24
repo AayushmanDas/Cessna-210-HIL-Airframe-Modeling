@@ -2,7 +2,7 @@
 **NASA Variant Parametric Modeling**
 
 <p align="center">
-  <img src="media/mesh_render.png" width="700">
+  <img src="media/mesh/mesh_render.png" width="700">
   <br>
   <i>Figure 1: Finalized Vortex Lattice Method (VLM) Mesh with 5,731 nodes.</i>
 </p>
@@ -17,7 +17,7 @@ This repository contains the 3D parametric reconstruction of a Cessna 210 Centur
 
 ## Repository Structure
 - **/model**: Contains the master `.vsp3` file and exported `.stp` CAD assembly.
-- **/docs**: Contains the LaTeX source and the [Final Technical Project Log (PDF)](docs/Cessna_210_Project_Log.pdf).
+- **/docs**: Contains the LaTeX source and the [Final Technical Project Log (PDF)](docs/report/Cessna_210_Project_Log.pdf).
 - **/media**: High-resolution mesh renders and geometric previews.
 
 ## How to View
