@@ -13,7 +13,8 @@ This repository contains the 3D parametric reconstruction and aerodynamic verifi
 ## Technical Highlights
 * **Geometric Fidelity:** Corrected a critical instructional typo that listed the vertical stabilizer height at 2.94 ft; verified and adjusted to ~7.10 ft based on NASA 3-view ratios to maintain aerodynamic stability.
 * **Numerical Optimization:** Resolved initial Kutta condition failures ($N_k=0$) by implementing "Skew Both" trailing-edge closures, enabling the solver to identify 109 lifting nodes.
-* **Computational Analysis:** * Performed an Alpha sweep ($0^\circ$ to $10^\circ$, $N_{pts}=11$) to characterize the lift-slope derivative.
+* **Computational Analysis:**
+    * Performed an Alpha sweep ($0^\circ$ to $10^\circ$, $N_{pts}=11$) to characterize the lift-slope derivative.
     * Identified numerical asymmetry at wing-fuselage junctions as inherent VLM interference from non-lifting bodies.
     * Verified downwash effects via enabled wake streamlines, confirming lifting-line theory application.
 
