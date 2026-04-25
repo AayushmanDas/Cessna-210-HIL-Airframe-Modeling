@@ -1,29 +1,31 @@
-# Cessna 210 Airframe Reconstruction & VLM Meshing
-**NASA Variant Parametric Modeling**
+# Cessna 210 Airframe Reconstruction & VLM Analysis
+**NASA Variant Parametric Modeling for HIL Testing**
 
 <p align="center">
-  <img src="media/mesh/mesh_render.png" width="700">
+  <img src="media/renders/Aero_Viewer.png" width="700">
   <br>
-  <i>Figure 1: Finalized Vortex Lattice Method (VLM) Mesh with 5,731 nodes.</i>
+  <i>Figure 1: Converged VSPAERO solution showing pressure coefficient ($C_p$) and wake streamlines.</i>
 </p>
 
 ## Project Overview
-This repository contains the 3D parametric reconstruction of a Cessna 210 Centurion airframe, modeled using NASA’s OpenVSP. The project bridges the gap between theoretical aircraft geometry and computational modeling for future telemetry integration.
+This repository contains the 3D parametric reconstruction and aerodynamic verification of a Cessna 210 Centurion airframe. Developed in a 6-hour intensive sprint, this model serves as a "simulation-ready" digital twin for future hardware-in-the-loop (HIL) avionics integration within the **Team Antarez** framework.
 
 ## Technical Highlights
-* **Geometric Fidelity:** Identified and corrected a critical instructional typo that listed the vertical stabilizer height at 2.94 ft; verified and adjusted to ~7.10 ft based on NASA 3-view ratios.
-* **Numerical Discretization:** Generated a high-density mesh to verify geometric watertightness and surface continuity.
-* **Computational Analysis:** Diagnosed numerical divergence (Kutta condition failure, $N_k=0$) caused by excessive Num-U discretization—optimized mesh parameters for future solver stability.
+* [cite_start]**Geometric Fidelity:** Corrected a critical instructional typo that listed the vertical stabilizer height at 2.94 ft; verified and adjusted to ~7.10 ft based on NASA 3-view ratios to maintain aerodynamic stability[cite: 12, 15].
+* [cite_start]**Numerical Optimization:** Resolved initial Kutta condition failures ($N_k=0$) by implementing "Skew Both" trailing-edge closures, enabling the solver to identify 109 lifting nodes[cite: 33].
+* [cite_start]**Computational Analysis:** * Performed an Alpha sweep ($0^\circ$ to $10^\circ$, $N_{pts}=11$) to characterize the lift-slope derivative.
+    * [cite_start]Identified numerical asymmetry at wing-fuselage junctions as inherent VLM interference from non-lifting bodies[cite: 35].
+    * [cite_start]Verified downwash effects via enabled wake streamlines, confirming lifting-line theory application[cite: 37].
 
 ## Repository Structure
-- **/model**: Contains the master `.vsp3` file and exported `.stp` CAD assembly.
-- **/docs**: Contains the LaTeX source and the [Final Technical Project Log (PDF)](docs/report/Cessna_210_Project_Log.pdf).
-- **/media**: High-resolution mesh renders and geometric previews.
+- **/model**: Master `.vsp3` file and `.stp` CAD assembly.
+- **/docs**: LaTeX source and [Technical Project Log (PDF)](docs/report/Cessna_210_Project_Log.pdf).
+- **/media**: Converged pressure maps, drag polars, and geometric orthographics.
 
 ## How to View
 1. Install [OpenVSP](https://openvsp.org/download.php).
 2. Open `model/Cessna210.vsp3`.
-3. To view the mesh, navigate to `Analysis -> VSPAERO -> Prepare`.
+3. To view simulation results, navigate to `Analysis -> VSPAERO -> Results Manager`.
 
 ---
 *Developed by Aayushman Das, ETCE Dept., Jadavpur University (2026).*
