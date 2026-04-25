@@ -1,0 +1,76 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=0.8in}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+% Custom colors
+\definecolor{japurple}{RGB}{101, 33, 134} 
+
+\title{
+    \vspace{-2cm}
+    \textbf{\textcolor{japurple}{Technical Project Log: Cessna 210 Airframe Reconstruction}} \\
+    \large NASA Variant Parametric Modeling \& Aerodynamic Analysis
+}
+\author{\textbf{Aayushman Das} \\ ETCE Department, Jadavpur University}
+\date{April 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Project Introduction}
+This log documents the 3D reconstruction and numerical discretization of a Cessna 210 Centurion airframe using NASA's OpenVSP (Vehicle Sketch Pad). The primary goal was to translate 2D engineering blueprints into a watertight 3D parametric model suitable for future avionics and telemetry integration within the Team Antarez framework.
+
+\section{Geometric Modeling \& Parameter Verification}
+The airframe was constructed using a multi-component assembly. A significant portion of the workflow involved the cross-verification of provided instructional dimensions against original 3-view drawings.
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Component} & \textbf{Finalized Dimension} & \textbf{Status/Notes} \\ \midrule
+Main Wingspan & 36.748 ft & Verified (NACA 2412) \\
+Fuselage Length & 24.580 ft & Scaled to Reference \\
+Main Wing Root Chord & 5.525 ft & Parameterized \\
+Horizontal Tail Span & 12.990 ft & Verified \\
+Vertical Tail Height & \textbf{7.10 ft} & \textbf{Corrected from 2.94 ft typo} \\ \bottomrule
+\end{tabular}
+\caption{Finalized Design Parameters for Cessna 210 Model.}
+\end{table}
+
+\subsection{Correction of Specification Errors}
+During the construction of the empennage, a major discrepancy was identified in the source instructions, which listed the vertical stabilizer height at 2.94 ft. Through visual ratio analysis of the NASA blueprints, this was identified as a scaling typo and corrected to $\sim$7.10 ft to maintain aerodynamic stability and geometric fidelity.
+
+\section{Numerical Mesh Generation}
+The model was discretized into a Vortex Lattice Method (VLM) mesh to analyze lift-induced pressure gradients.
+
+\begin{itemize}
+    \item \textbf{Discretization:} A total of 5,731 nodes were generated to ensure surface continuity.
+    \item \textbf{Wing Geometry:} Implemented 2.0$^\circ$ dihedral for lateral stability.
+    \item \textbf{Solver Configuration:} Performed an Alpha sweep from $0^\circ$ to $10^\circ$ ($N_{pts}=11$) to characterize the lift-slope derivative and drag polar.
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Aero_Viewer.png} 
+    \caption{Converged VSPAERO solution showing pressure coefficient ($C_p$) distribution and wake streamlines.}
+\end{figure}
+
+\section{Computational Analysis \& Results}
+The simulation achieved numerical convergence by optimizing trailing-edge discretization. Initial Kutta condition detection failures ($N_k = 0$) were resolved by implementing a "Skew Both" closure at the trailing edges, allowing the solver to successfully identify 109 Kutta nodes.
+
+\begin{itemize}
+    \item \textbf{Pressure Mapping:} Surface $C_p$ analysis confirms appropriate lift generation across the NACA 2412 sections. Visual numerical asymmetry at wing-fuselage junctions was identified as inherent VLM interference.
+    \item \textbf{Solver Convergence:} The model demonstrated high stability, with the log error for $CL_{tot}$ decreasing significantly across iterations, verifying a physically consistent solution.
+    \item \textbf{Wake Visualization:} Enabled wake streamlines to verify the downwash effect, confirming the lifting-line theory application for this specific airframe configuration.
+\end{itemize}
+
+\section{Conclusion}
+The project successfully transitioned from geometric reconstruction to a verified aerodynamic dataset. By debugging the numerical instabilities and managing junction interference, a simulation-ready digital twin has been established. This model will serve as the baseline for Team Antarez hardware-in-the-loop (HIL) testing and flight controller calibration.
+
+\end{document}
