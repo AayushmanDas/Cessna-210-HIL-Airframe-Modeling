@@ -8,7 +8,7 @@
 </p>
 
 ## Project Overview
-This repository contains the 3D parametric reconstruction and aerodynamic verification of a Cessna 210 Centurion airframe. Developed in a 6-hour intensive sprint, this model serves as a "simulation-ready" digital twin for future hardware-in-the-loop (HIL) avionics integration within the **Team Antarez** framework.
+This repository contains the 3D parametric reconstruction and aerodynamic verification of a Cessna 210 Centurion airframe. Developed in a 6-hour intensive sprint, this model serves as a "simulation-ready" digital twin for future hardware-in-the-loop (HIL) avionics integration.
 
 ## Technical Highlights
 * **Geometric Fidelity:** Corrected a critical instructional typo that listed the vertical stabilizer height at 2.94 ft; verified and adjusted to ~7.10 ft based on NASA 3-view ratios to maintain aerodynamic stability.
