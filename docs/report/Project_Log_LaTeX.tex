@@ -65,9 +65,10 @@ The model was discretized into a Vortex Lattice Method (VLM) mesh to analyze lif
 The simulation achieved numerical convergence by optimizing trailing-edge discretization. Initial Kutta condition detection failures ($N_k = 0$) were resolved by implementing a "Skew Both" closure at the trailing edges, allowing the solver to successfully identify 109 Kutta nodes.
 
 \begin{itemize}
-    \item \textbf{Pressure Mapping:} Surface $C_p$ analysis confirms appropriate lift generation across the NACA 2412 sections. Visual numerical asymmetry at wing-fuselage junctions was identified as inherent VLM interference.
-    \item \textbf{Solver Convergence:} The model demonstrated high stability, with the log error for $CL_{tot}$ decreasing significantly across iterations, verifying a physically consistent solution.
-    \item \textbf{Wake Visualization:} Enabled wake streamlines to verify the downwash effect, confirming the lifting-line theory application for this specific airframe configuration.
+    \item \textbf{Pressure Mapping:} Surface $C_p$ analysis confirms appropriate lift generation across the NACA 2412 sections. 
+    \item \textbf{Asymmetric Loading Analysis:} Localized pressure variations on the wing surfaces were identified as asymmetric flow impingement from the 3-blade propeller wake. The solver accurately captured the interference between the discrete prop-geometry and the wing panels.
+    \item \textbf{Solver Stability:} The model demonstrated high stability, with the log error for $CL_{tot}$ decreasing significantly across iterations, verifying a physically consistent solution.
+    \item \textbf{Wake Visualization:} Enabled wake streamlines to verify the downwash effect, confirming the lifting-line theory application.
 \end{itemize}
 
 \section{Conclusion}
